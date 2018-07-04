@@ -5,7 +5,7 @@ import { DetalhesPage } from '../detalhes/detalhes';
 import { Imc } from '../../model/imc';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
-import { Database } from '../../data/database';
+
 
 @Component({
   selector: 'page-home',
@@ -13,7 +13,7 @@ import { Database } from '../../data/database';
 })
 export class HomePage {
   imc: Imc = new Imc();
-  quantidade;
+
 
   constructor(public navCtrl: NavController, public http: Http, public database: Database) {
 
@@ -24,7 +24,6 @@ export class HomePage {
   }
 
   cadastrarImc() {
-    this.database.adicionarImc(this.imc);
 
     this.http.post("http://200.17.98.122:8080/hellows/rest/service/inserirImc", this.imc).retry(2).map(res => res.json()).subscribe(
       data => {
@@ -36,7 +35,6 @@ export class HomePage {
   }
 
   chamarDetalhesSemParametros() {
-
     this.navCtrl.push(DetalhesPage);
   }
 
