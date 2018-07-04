@@ -15,7 +15,7 @@ export class HomePage {
   imc: Imc = new Imc();
 
 
-  constructor(public navCtrl: NavController, public http: Http, public database: Database) {
+  constructor(public navCtrl: NavController, public http: Http) {
 
   }
 
