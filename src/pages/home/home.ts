@@ -5,6 +5,8 @@ import { DetalhesPage } from '../detalhes/detalhes';
 import { Imc } from '../../model/imc';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
+import { Storage } from '@ionic/storage';
+import { Database } from '../../data/database';
 
 
 @Component({
@@ -15,13 +17,41 @@ export class HomePage {
   imc: Imc = new Imc();
 
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController,
+    public http: Http,
+    public storage: Storage,
+    public database: Database) {
 
+  }
+
+  cadastrarImcSqlite(){
+    this.database.adicionarImc(this.imc);
+  }
+
+  consultarImcSqlite(){
+    this.database.buscarImc().subscribe(data =>{
+      console.log(data[0].nome);
+    });
   }
 
   converterNumber(numero): number {
     return parseFloat(numero);
   }
+
+  cadastrarImcStorage(){
+    this.storage.set('imc',this.imc);
+  }
+  buscarImc(){
+    this.storage.get('imc').then((data) =>{
+      console.log(data);
+    });
+  }
+
+  removerImc(){
+    this.storage.remove('imc');
+  }
+
+
 
   cadastrarImc() {
 

@@ -5,11 +5,13 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 import { SQLite } from '@ionic-native/sqlite';
+import { IonicStorageModule } from '@ionic/storage';
+
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetalhesPage } from '../pages/detalhes/detalhes';
-import { Database } from '../data/database'
+import { Database } from '../data/database';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { Database } from '../data/database'
   imports: [
     BrowserModule,
     HttpModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
